@@ -20,6 +20,11 @@ def writeCSVData(urls, fileURIs):
 			file.write(urllib2.urlopen(GoogleSheetsURL.replace('{key}',urls[urlName])).read())
 
 
+def readCSVFile(file):
+	with open(file,'r') as file:
+		return csv.reader(file)
+
+
 
 
 
@@ -30,10 +35,12 @@ DocumentKeys = {
 	# ,'Presence':'1MAg21Z2H01UHSK1WiAzxfcqziD-CYvMnpafM_XPXwMs'
 }
 
-CSVData = getCSVData(DocumentKeys)
-for event in CSVData['Wireless_Door_Lab']:
-	for field in event:
-		print field + '\t'
 
-writeCSVData(DocumentKeys,{'Wireless_Door_Lab':'testwireless.csv'})
+if __name__ == '__main__':
+	CSVData = getCSVData(DocumentKeys)
+	for event in CSVData['Wireless_Door_Lab']:
+		for field in event:
+			print field + '\t'
+
+	writeCSVData(DocumentKeys,{'Wireless_Door_Lab':'testwireless.csv'})
 
