@@ -53,28 +53,22 @@ def enterExit(data, exportNoDisplay=False):
 			
 			#Check that points used in comparision are defined
 			if current_point != None and next_point != None:
-				
-				#Convert Datetime 
-				next_point_time = datetime.strptime(next_point[1], '%B %d, %Y at %H:%M%p')
-				current_point_time = datetime.strptime(current_point[1], '%B %d, %Y at %H:%M%p')
-				
-				#Set plot default color
 
 				
 				#Check for entering room
-				if (current_point[0] == 'Open' or current_point[0] == 'Closed') and next_point[0] == 'Movement' and (next_point_time - current_point_time) < timedelta(minutes=4):
+				if (current_point[0] == 'Open' or current_point[0] == 'Closed') and next_point[0] == 'Movement' and (next_point[1] - current_point[1]) < timedelta(minutes=4):
 					# print "Enter\t" +  current_point[1]
 					colors.append("green")
-					dates.append(current_point_time)
+					dates.append(current_point[1])
 
 				#Check for exiting room
-				if current_point[0] == 'Closed' and (next_point_time - current_point_time) > timedelta(minutes=4):
+				if current_point[0] == 'Closed' and (next_point[1] - current_point[1]) > timedelta(minutes=4):
 					# print "Exit\t" + current_point[1]
 					colors.append("red")
-					dates.append(current_point_time)
+					dates.append(current_point[1])
 
 
-				#Check for unknown activity (TODO)
+
 
 	if exportNoDisplay == True:
 		date_array = np.array(dates)
@@ -95,7 +89,7 @@ def enterExit(data, exportNoDisplay=False):
 	ax.get_yaxis().set_ticklabels([])
 	day = timedelta(days=1)
 	plt.xlim(dates[0] - day, dates[-1] + day)
-	plt.show()
+	# plt.show()
 
 
 
@@ -146,15 +140,73 @@ def doorStatusScatter(data):
 
 	ax.set_xlim(min_date,max_date)
 	ax.set_ylim(-100,100)
-	plt.show()
+	# plt.show()
+
+
+
+def getNumpy(reader, cols):
+	data_list = []
+	for line in reader:
+		line_list = []
+		for num_col in range(len(cols)):
+			line_list.append(cols[num_col][1](line[num_col]))
+
+		data_list.append(line_list)
+
+
+	return np.array(data_list)
+
+def pie_chart(data, labels):
+	fig, ax = plt.subplots()
+
+	ax.pie(data,labels=labels,autopct='%1.1f%%')
+
+	# plt.show()
+
+def bar_chart(data,labels,bar_width=0.4):
+	fig, ax = plt.subplots()
+
+	num_bars = np.arange(data.size)
+	print num_bars
+
+
+	ax.bar(num_bars,data,width=bar_width)
+	ax.set_ylabel('Sum of Activity')
+	ax.set_title('Activity by Type')
+	ax.set_xticks(num_bars+bar_width/2)
+	ax.set_xticklabels(labels)
+
+	# plt.show()
+
+
+
 
 
 #Run when this file is executed
 if __name__ == '__main__':
+		
 		#open 'testwireless.csv' as testing data and display plot
 		with open('testwireless.csv','r') as file:
-			data  = csv.reader(file)
-			enterExit(data)
+			reader  = csv.reader(file)
+			np_array = getNumpy(reader,[["Action",lambda x: x],["DateTime",lambda x: datetime.strptime(x, '%B %d, %Y at %H:%M%p')],["Sensor",lambda x: x]])
+
+			
+			#Display figures for counting actions
+			np_action_count = np.unique(np_array[:,0],return_counts=True)
+			pie_chart(data=np_action_count[1],labels=np_action_count[0])
+			bar_chart(data=np_action_count[1],labels=np_action_count[0])
+
+			#Display figures for counting sensor calls
+			np_sensor_count = np.unique(np_array[:,2],return_counts=True)			
+			pie_chart(data=np_sensor_count[1],labels=np_sensor_count[0])
+			bar_chart(data=np_sensor_count[1],labels=np_sensor_count[0])
+
+			#Display figures for door open/closed
+			enterExit(np_array)
+
+
+
+			plt.show()
 
 
 
