@@ -1,0 +1,35 @@
+TOP
+{ SystemId: '90:03:b7:00:00:e7:8d:5d',
+  ManufacturerName: 'Parrot\u0000',
+  BatteryLevel: 84,
+  Sunlight: 0.3520403338454293,
+  SoilTemperature: 23.215924668120007,
+  AirTemperature: 23.26168219648,
+  SoilMoisture: 37.896632992000434,
+  FriendlyName: 'Flower power 8D5D\u0000???',
+  SerialNumber: 'PI040297AA3K009530\u0000??\u0000\u0014\u0000Flower p',
+  FirmwareRevision: '2016-09-14_hawaii-2.0.3_hardware-config-MP\u0000' }
+
+MIDDLE
+{ SystemId: 'a0:14:3d:00:00:07:cd:1d',
+  ManufacturerName: 'Parrot\u0000',
+  BatteryLevel: 84,
+  Sunlight: Infinity,
+  SoilTemperature: -10,
+  AirTemperature: -10,
+  SoilMoisture: 21.56081517433029,
+  FriendlyName: 'Flower power CD1D\u0000???',
+  SerialNumber: 'PI040297AA4A026838\u0000??\u0000\u0014\u0000Flower p',
+  FirmwareRevision: '2016-09-14_hawaii-2.0.3_hardware-config-MP\u0000' }
+
+BOTTOM
+{ SystemId: '90:03:b7:00:00:ca:0a:28',
+  ManufacturerName: 'Parrot\u0000',
+  BatteryLevel: 85,
+  Sunlight: Infinity,
+  SoilTemperature: -10,
+  AirTemperature: -10,
+  SoilMoisture: 21.56081517433029,
+  FriendlyName: 'Flower power 0A28\u0000???',
+  SerialNumber: 'PI040297AA3J004313\u0000??\u0000\u0014\u0000Flower p',
+  FirmwareRevision: '2016-09-14_hawaii-2.0.3_hardware-config-MP\u0000' }
