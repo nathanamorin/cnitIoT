@@ -93,8 +93,8 @@ DocumentKeys = {
 
 
 if __name__ == '__main__':
-    #while 1:
+    while 1:
         output()
         monthly()
         currentcondition()
-        #time.sleep(20)
+        time.sleep(20)
