@@ -43,4 +43,3 @@ if __name__ == '__main__':
 			print field + '\t'
 
 	writeCSVData(DocumentKeys,{'Wireless_Door_Lab':'testwireless.csv'})
-
