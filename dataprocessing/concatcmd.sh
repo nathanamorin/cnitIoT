@@ -1,0 +1,1 @@
+echo "{ $(for f in *; do echo " \"$(ls -l $f | awk -v OFS="\t" '$1=$1' | cut -f6-8 | tr '\11' '_')\":$(cat $f),"; done) }" | sed '$ s/, }/ }/'
