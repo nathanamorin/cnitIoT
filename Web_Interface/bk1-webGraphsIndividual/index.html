@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<meta charset="utf-8">
+<head>
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script> -->
+  <!-- <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+  <script src="https://d3js.org/d3.v3.min.js"></script>
+
+  <!-- <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css"> -->
+  <!-- <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.5.1/css/bootstrap-slider.min.css">
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.5.1/bootstrap-slider.min.js"></script>
+
+
+
+  <script type="text/javascript" src="index.js"></script>
+
+</head>
+<style type="text/css">
+.chart rect {
+  fill: steelblue;
+}
+
+.chart text {
+  fill: white;
+  font: 10px sans-serif;
+  text-anchor: start;
+}
+
+
+.arc text {
+  font: 10px sans-serif;
+  text-anchor: middle;
+}
+
+.arc path {
+  stroke: #fff;
+}
+</style>
+
+<body>
+<svg class="chart" id="bar_chart_count_group_by_action"></svg>
+
+<svg class="chart" id="pie_chart_count_group_by_action"></svg>
+
+<div>
+
+<input id="ex6" type="text" data-slider-min="0" data-slider-max="0" data-slider-step="1" data-slider-value="0"/>
+<span id="ex6CurrentSliderValLabel">Date: <span id="ex6SliderVal"></span></span>
+
+
+</div>
+</body>
+
